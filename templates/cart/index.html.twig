@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart Homepapge
+{% endblock %}
+
+{% block body %}
+	
+<div class="container">
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Image</th>
+				<th scope="col">Name product</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Unit Price</th>
+				<th scope="col">Total</th>
+				<th scope="col"></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+            {% for cart in cart %}
+            <tr>
+				<td><img src="{{asset ('uploads/images/'~ cart.product.image)}}" height="200px"></td>
+				<td>{{cart.product.name}}</td>
+				<td>{{cart.quantity}}</td>
+				<td>${{cart.product.price}}</td>
+				<td>${{cart.product.price * cart.quantity}}</td>
+				<td><a href="{{path ('cart_edit',{'id':cart.id})}}"><i class="bi bi-pencil"></i></a></td>
+				<td><a href="{{path ('cart_delete',{'id':cart.id})}}" ><i class="bi bi-trash"></i></a></td>
+			</tr>
+            {% endfor %}
+			
+
+		</tbody>
+	</table>
+
+	{% set var = 0 %}
+	{% for cart in cart %}
+		{% set total = cart.product.price * cart.quantity %}
+		{% set var = total + var %}
+	{% endfor %}
+
+	Total of cart : $ {{var}}
+	<br>
+	
+	
+	<a href="{{path('cart_add')}}"><button type="button" class="btn btn-primary">Add to cart</button></a>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+   <h2 class="text-center mt-2">UPDATE PRODUCT TO CART</h2>
+   <div class="col-md-6"></div>
+      {{ form_start (form) }}
+         <div class="form-group">
+            {{ form_label (form.product) }}
+            {{ form_widget (form.product,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="form-group">
+            {{ form_label (form.quantity) }}
+            {{ form_widget (form.quantity,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+         </div>
+       
+         <div class="form-group text-center mt-3">
+            <button class="btn btn-primary" type="submit">UPDATE</button>
+         </div>
+      {{ form_end (form) }}
+   </div>
+</div>
+{% endblock %}
